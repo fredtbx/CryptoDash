@@ -56,7 +56,7 @@ const DeleteIcon = styled.div`
 export default function(favorites=false) {
   let coinKeys = favorites ? 
     this.state.favorites : 
-    ((this.state.filteredCoins && Object.keys(this.state.filteredCoins)) || Object.keys(this.state.coinList).slice(0, 100));
+    ((this.state.filteredCoins && Object.keys(this.state.filteredCoins)) || Object.keys(this.state.coinList));
   return <CoinGrid> 
     {coinKeys.map(coinKey => 
       <CoinTile chosen={this.isInFavorites(coinKey)} favorite={favorites} onClick={

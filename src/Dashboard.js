@@ -48,11 +48,11 @@ export default function() {
       let tileProps = {
         dashboardFavorite: sym === self.state.currentFavorite,
         onClick: () => {
-          self.setState({currentFavorite: sym});
+          self.setState({currentFavorite: sym, historical: null}, self.fetchHistorical);
           localStorage.setItem('cryptoDash', JSON.stringify({
             ...JSON.parse(localStorage.getItem('cryptoDash')),
             currentFavorite: sym,
-          }))
+          }));
         }        
       }
       return index < 5 ? <CoinTile {...tileProps}>
@@ -83,7 +83,8 @@ export default function() {
       <img style={{ height: '200px', display: 'block', margin: 'auto' }} src={`http://cryptocompare.com/${this.state.coinList[this.state.currentFavorite].ImageUrl}`} />
     </PaddingBlue>
     <PaddingBlue>
-      <ReactHighcharts config={highchartsConfig.call(this)} />
+      {this.state.historical ? <ReactHighcharts config={highchartsConfig.call(this)} />
+         : <div>Loading historical data...</div>}
     </PaddingBlue>
   </ChartGrid>]
 }

@@ -1,5 +1,5 @@
-import {fontSize1, greenBoxShadow, backgroundColor2, fontSize3} from './Style';
-import styled, {css} from 'styled-components';
+import {fontSize1, greenBoxShadow} from './Style';
+import styled from 'styled-components';
 
 export const ConfirmButton = styled.div`
   margin: 20px;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CoinGrid, CoinTile, CoinHeaderGrid, CoinSymbol } from './CoinList';
 import styled, {css} from 'styled-components';
-import {fontSizeBig, fontSize3, subtleBoxShadow, lightBlueBackground} from './Style';
+import {fontSizeBig, fontSize3, subtleBoxShadow, lightBlueBackground, fontSize2, backgroundColor2} from './Style';
 import highchartsConfig from './HighchartsConfig';
 import theme from './HighchartsTheme'
 const ReactHighcharts = require('react-highcharts');
@@ -38,6 +38,16 @@ const ChartGrid = styled.div`
   margin-top: 20px;
   grid-gap: 15px;
   grid-template-columns: 1fr 3fr;
+`
+const ChartIntervalSelect = styled.select`
+  ${backgroundColor2}
+  color: #1163c9;
+  border: 1px solid;
+  ${fontSize2}
+  margin: 5px;
+  height: 25px;
+  place-self: center left;
+  float: right;
 `
 export default function() {
   let self = this;
@@ -83,6 +93,15 @@ export default function() {
       <img style={{ height: '200px', display: 'block', margin: 'auto' }} src={`http://cryptocompare.com/${this.state.coinList[this.state.currentFavorite].ImageUrl}`} />
     </PaddingBlue>
     <PaddingBlue>
+    <ChartIntervalSelect 
+      defaultValue={'months'}
+      onChange={(e) => {
+        this.setState({timeInterval: e.target.value, historical: null}, this.fetchHistorical);
+    }}>
+      <option value="days">Day</option>
+      <option value="weeks">Week</option>
+      <option value="months" >Month</option>
+    </ChartIntervalSelect>
       {this.state.historical ? <ReactHighcharts config={highchartsConfig.call(this)} />
          : <div>Loading historical data...</div>}
     </PaddingBlue>

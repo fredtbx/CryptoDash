@@ -2,6 +2,11 @@ import React from 'react';
 import { CoinGrid, CoinTile, CoinHeaderGrid, CoinSymbol } from './CoinList';
 import styled, {css} from 'styled-components';
 import {fontSizeBig, fontSize3, subtleBoxShadow, lightBlueBackground} from './Style';
+import highchartsConfig from './HighchartsConfig';
+import theme from './HighchartsTheme'
+const ReactHighcharts = require('react-highcharts');
+
+ReactHighcharts.Highcharts.setOptions(theme());
 
 const numberFormat = number => {
   return +(number + '').slice(0, 7);
@@ -78,7 +83,7 @@ export default function() {
       <img style={{ height: '200px', display: 'block', margin: 'auto' }} src={`http://cryptocompare.com/${this.state.coinList[this.state.currentFavorite].ImageUrl}`} />
     </PaddingBlue>
     <PaddingBlue>
-      Chart goes here...
+      <ReactHighcharts config={highchartsConfig.call(this)} />
     </PaddingBlue>
   </ChartGrid>]
 }

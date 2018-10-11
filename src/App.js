@@ -46,7 +46,7 @@ const checkFirstVisit = () => {
 class App extends Component {
   state = {
     page: 'dashboard',
-    //favorites: ['ETH', 'BTC', 'XMR', 'DOGE', 'EOS'],
+    favorites: ['ETH', 'BTC', 'XMR', 'DOGE', 'EOS'],
     timeInterval: 'months',
     ...checkFirstVisit()
     
